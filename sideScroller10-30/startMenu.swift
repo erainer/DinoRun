@@ -7,32 +7,30 @@
 //
 
 import UIKit
+import AVFoundation
+import AudioToolbox
 
-class startMenu: UIViewController {
-
+class startMenu: UIViewController{
+    var menuMusic = AVAudioPlayer()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        supportedInterfaceOrientations()
-
+        do{
+            try menuMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: "menu", ofType: "mp3")!) as URL)
+        } catch{
+            NSLog("Error: Menu Audio is not working correctly.")
+        }
+        menuMusic.play()
     }
 
+    @IBAction func playButton(_ sender: Any) {
+        menuMusic.stop()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.landscape.rawValue)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

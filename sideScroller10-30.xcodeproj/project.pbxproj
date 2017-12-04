@@ -10,6 +10,13 @@
 		A14066491FAD461E0034D885 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14066481FAD461E0034D885 /* Launch Screen.storyboard */; };
 		A14596EF1FB3687A00F3EAAE /* dinoFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A14596EE1FB3687A00F3EAAE /* dinoFont.ttf */; };
 		A14596F21FB36B5800F3EAAE /* startMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14596F11FB36B5800F3EAAE /* startMenu.swift */; };
+		A163E66A1FCA422200A97B9C /* gameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6691FCA422100A97B9C /* gameMusic.mp3 */; };
+		A163E6721FCC7A7800A97B9C /* menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6711FCC7A7800A97B9C /* menu.mp3 */; };
+		A163E6741FCC7F5900A97B9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E6731FCC7F5900A97B9C /* Constants.swift */; };
+		A163E67B1FCCC5E000A97B9C /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E67A1FCCC5E000A97B9C /* Rock.swift */; };
+		A163E67D1FCCC6C100A97B9C /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E67C1FCCC6C100A97B9C /* Ground.swift */; };
+		A163E6811FCCE43400A97B9C /* Score.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E6801FCCE43400A97B9C /* Score.swift */; };
+		A163E6831FCCEC8F00A97B9C /* RockSpawn.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E6821FCCEC8F00A97B9C /* RockSpawn.swift */; };
 		A1CB17A41FA80B1E0020DF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB17A31FA80B1E0020DF1C /* AppDelegate.swift */; };
 		A1CB17A61FA80B1E0020DF1C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1CB17A51FA80B1E0020DF1C /* GameScene.sks */; };
 		A1CB17A81FA80B1E0020DF1C /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1CB17A71FA80B1E0020DF1C /* Actions.sks */; };
@@ -41,8 +48,14 @@
 /* Begin PBXFileReference section */
 		A14066481FAD461E0034D885 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		A14596EE1FB3687A00F3EAAE /* dinoFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dinoFont.ttf; sourceTree = "<group>"; };
-		A14596F01FB3694200F3EAAE /* dinoFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = dinoFont.ttf; path = fonts/dinoFont.ttf; sourceTree = "<group>"; };
 		A14596F11FB36B5800F3EAAE /* startMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startMenu.swift; sourceTree = "<group>"; };
+		A163E6691FCA422100A97B9C /* gameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameMusic.mp3; sourceTree = "<group>"; };
+		A163E6711FCC7A7800A97B9C /* menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menu.mp3; sourceTree = "<group>"; };
+		A163E6731FCC7F5900A97B9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A163E67A1FCCC5E000A97B9C /* Rock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
+		A163E67C1FCCC6C100A97B9C /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
+		A163E6801FCCE43400A97B9C /* Score.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Score.swift; sourceTree = "<group>"; };
+		A163E6821FCCEC8F00A97B9C /* RockSpawn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RockSpawn.swift; sourceTree = "<group>"; };
 		A1CB17A01FA80B1E0020DF1C /* sideScroller10-30.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "sideScroller10-30.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CB17A31FA80B1E0020DF1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1CB17A51FA80B1E0020DF1C /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -85,6 +98,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A163E6751FCC7F6F00A97B9C /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				A163E6711FCC7A7800A97B9C /* menu.mp3 */,
+				A163E6691FCA422100A97B9C /* gameMusic.mp3 */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		A163E6841FCCEC9900A97B9C /* Rock */ = {
+			isa = PBXGroup;
+			children = (
+				A163E6821FCCEC8F00A97B9C /* RockSpawn.swift */,
+				A163E67A1FCCC5E000A97B9C /* Rock.swift */,
+			);
+			path = Rock;
+			sourceTree = "<group>";
+		};
 		A1CB17971FA80B1E0020DF1C = {
 			isa = PBXGroup;
 			children = (
@@ -113,13 +144,17 @@
 				A1CB17A51FA80B1E0020DF1C /* GameScene.sks */,
 				A1CB17A71FA80B1E0020DF1C /* Actions.sks */,
 				A1CB17A91FA80B1E0020DF1C /* GameScene.swift */,
+				A163E6841FCCEC9900A97B9C /* Rock */,
+				A163E67C1FCCC6C100A97B9C /* Ground.swift */,
 				A1CB17AB1FA80B1E0020DF1C /* GameViewController.swift */,
+				A163E6731FCC7F5900A97B9C /* Constants.swift */,
+				A14596F11FB36B5800F3EAAE /* startMenu.swift */,
+				A163E6801FCCE43400A97B9C /* Score.swift */,
 				A1CB17AD1FA80B1E0020DF1C /* Main.storyboard */,
+				A163E6751FCC7F6F00A97B9C /* Audio */,
 				A1CB17B01FA80B1E0020DF1C /* Assets.xcassets */,
-				A14596F01FB3694200F3EAAE /* dinoFont.ttf */,
 				A1CB17B51FA80B1E0020DF1C /* Info.plist */,
 				A14066481FAD461E0034D885 /* Launch Screen.storyboard */,
-				A14596F11FB36B5800F3EAAE /* startMenu.swift */,
 			);
 			path = "sideScroller10-30";
 			sourceTree = "<group>";
@@ -253,7 +288,9 @@
 				A1CB17AF1FA80B1E0020DF1C /* Main.storyboard in Resources */,
 				A1CB17A61FA80B1E0020DF1C /* GameScene.sks in Resources */,
 				A14596EF1FB3687A00F3EAAE /* dinoFont.ttf in Resources */,
+				A163E66A1FCA422200A97B9C /* gameMusic.mp3 in Resources */,
 				A1CB17B11FA80B1E0020DF1C /* Assets.xcassets in Resources */,
+				A163E6721FCC7A7800A97B9C /* menu.mp3 in Resources */,
 				A1CB17A81FA80B1E0020DF1C /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -279,6 +316,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A163E67B1FCCC5E000A97B9C /* Rock.swift in Sources */,
+				A163E6831FCCEC8F00A97B9C /* RockSpawn.swift in Sources */,
+				A163E6741FCC7F5900A97B9C /* Constants.swift in Sources */,
+				A163E6811FCCE43400A97B9C /* Score.swift in Sources */,
+				A163E67D1FCCC6C100A97B9C /* Ground.swift in Sources */,
 				A14596F21FB36B5800F3EAAE /* startMenu.swift in Sources */,
 				A1CB17AA1FA80B1E0020DF1C /* GameScene.swift in Sources */,
 				A1CB17AC1FA80B1E0020DF1C /* GameViewController.swift in Sources */,
@@ -441,7 +483,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VL2R3D6A6X;
 				INFOPLIST_FILE = "sideScroller10-30/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erainer.sideScroller10-30";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,7 +499,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VL2R3D6A6X;
 				INFOPLIST_FILE = "sideScroller10-30/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.erainer.sideScroller10-30";
 				PRODUCT_NAME = "$(TARGET_NAME)";

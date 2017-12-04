@@ -8,141 +8,183 @@
 
 import SpriteKit
 import GameplayKit
+import AVFoundation
 
 class GameScene: SKScene {
+    //Score
+    var scoreLabel = SKLabelNode()
+    var score: Int = 0
     
-    let ground = SKSpriteNode(imageNamed: "ground")
-    let ground2  = SKSpriteNode(imageNamed: "ground")
-    let ground3 = SKSpriteNode(imageNamed: "ground")
+    let rock = SKSpriteNode(imageNamed: "rock")
     
-    
+    //Player
     var player = SKSpriteNode()
     var playerArray = [SKTexture]()
+    let player1 = "dino1"
+    let player2 = "dino2"
+    let player3 = "dino3"
+    let player4 = "dino4"
     
-    var jump = SKSpriteNode()
+    //Player Array
     var playerJumpArray = [SKTexture]()
     var playerJumpArrayEnd = [SKTexture]()
     
-    
+    //Player Actions
     var playerRun: SKAction!
     var playerJump: SKAction!
-
-    let playerStartY: CGFloat = 275
     
-    let rock = SKSpriteNode(imageNamed: "rock")
-    let minObjectX: UInt32 = 300
-    let maxObjectX: UInt32 = 1740
+    var ground = Ground()
+    //var rock = Rock()
+    
+    //timers
     var timerFinished = false
+    var spawnTimer: TimeInterval = 0
     
-    var timer: Timer?
+    //Audio
+    var gameMusic = AVAudioPlayer()
+    //var rockSpawner = RockSpawn()
     
     override func didMove(to view: SKView) {
-        self.backgroundColor = UIColor(red: 0.1, green: 0.4, blue: 0.4, alpha: 1)
-        //self.background = SKSpriteNode(imageNamed: "sky")
-        //background.position = CGPoint(x: 0, y: 0)
-       // self.background.position = CGPoint(x: self.scene!.size.width / 2, y: self.scene!.size.height / 2)
-        //self.addChild(background)
-        
-//        let initPosGround = CGPoint(x: -10, y: 75)
-//        let intiPosGround2 = CGPoint(x: ground2.size.width - 10, y: 75)
-//        let initPosGround3 = CGPoint(x: ground2.size.width + ground3.size.width - 10, y: 75)
-        
-        ground.position = CGPoint(x: 0, y: 75)
-        self.addChild(ground)
-        
-        ground2.position = CGPoint(x: ground2.size.width - 1, y: 75)
-        self.addChild(ground2)
-        
-        ground3.position = CGPoint(x: ground2.size.width + ground3.size.width - 1, y: 75)
-        self.addChild(ground3)
+        Audio()
+        loadGame()
+        loadPhyisicsBody()
+    }
 
-       // let jumpUp = SKAction.moveBy(x: -5, y: 5, duration: 0.05)
+    func loadGame(){
+        //Background
+        self.backgroundColor = UIColor(red: 0.1, green: 0.4, blue: 0.4, alpha: 1)
+        
+        //Add to scene
+        self.addChild(ground);
+        spawnRock()
+        self.addChild(rock)
+        //generateRock()
+        //renderer(_renderer: self as! SCNSceneRendererDelegate, updateTime: spawnTimer)
+        //Displays the score
+        scoreLabel.fontSize = 60
+        scoreLabel.text = String(score)
+        scoreLabel.position = CGPoint(x: 1600, y: 800)
+        self.addChild(scoreLabel)
+
+        //Creates the player and animates
         createPlayer()
         player.run(SKAction.repeatForever(SKAction.animate(with: playerArray, timePerFrame: 0.2)))
-        
-         //createObjects()
-        
+    }
+    
+    func loadPhyisicsBody(){
+        physicsBody = SKPhysicsBody(circleOfRadius: 60)
+        physicsBody?.categoryBitMask = playerCategory
+        physicsBody?.contactTestBitMask = rockCategory
+        physicsBody?.affectedByGravity = false
+    }
+    
+    func Audio(){
+        do{
+            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: "gameMusic", ofType: "mp3")!) as URL)
+        } catch{
+            NSLog("Error: Game music is not working correctly.")
+        }
+        gameMusic.play()
     }
     
     func createPlayer(){
-        for var i in 0...3{
-            let player1 = "dino1"
-            let player2 = "dino2"
-            let player3 = "dino3"
-            let player4 = "dino4"
-            
-            
-            playerArray.append(SKTexture(imageNamed: player1))
-            playerArray.append(SKTexture(imageNamed: player2))
-            playerArray.append(SKTexture(imageNamed: player3))
-            playerArray.append(SKTexture(imageNamed: player4))
-            
-            i += 1
-        }
+        //Adds the images to the player array
+        playerArray.append(SKTexture(imageNamed: player1))
+        playerArray.append(SKTexture(imageNamed: player2))
+        playerArray.append(SKTexture(imageNamed: player3))
+        playerArray.append(SKTexture(imageNamed: player4))
         
-        if(playerArray.count > 1){
-            player = SKSpriteNode(imageNamed: "player1.png")
-            player.position = CGPoint(x: (scene!.size.width / 3) - 75, y: 275)
-            player.zPosition = 1
-            player.size = CGSize( width: 256, height: 256)
-            self.addChild(player)
-        }
-        
+        //Player Properties
+        player.name = "player"
+        player.position = CGPoint(x: (scene!.size.width / 3) - 75, y: 275)
+        player.zPosition = 1
+        player.size = CGSize( width: 256, height: 256)
+        self.addChild(player)
+    
+        //Adds the images to the jump array
         playerJumpArray.append(SKTexture(imageNamed: "dinoJump2"))
         playerJumpArray.append(SKTexture(imageNamed: "dinoJump1"))
-        
     }
+    
     
     func randomNumInRange(min: Int, max: Int) -> Int{
         return min + Int(arc4random_uniform(UInt32(max - min + 1)))
-        
-    }
-    func createObjects(){
-        
-        let number = randomNumInRange(min: 2, max: 10)
-        timer = Timer.scheduledTimer(timeInterval: Double(number), target: self, selector: Selector(("rock")), userInfo: nil, repeats: false)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + Double(number)) {
-            self.rock.position = CGPoint(x: 1000, y: 75)
-            self.addChild(self.rock)
-        }
     }
     
+    func spawnRock(){
+        let wait = SKAction.wait(forDuration: 1, withRange: 0.5)
+        let spawn = SKAction.run({
+            self.generateRock()
+        })
+        let spawning = SKAction.sequence([wait,spawn])
+        self.run(SKAction.repeatForever(spawning), withKey: "spawning")
+    }
+    
+    func moveRock(){
+        let moveLeft = SKAction.moveBy(x: -20, y: 0, duration: 10)
+        rock.run(SKAction.repeatForever(moveLeft))
+    }
+    func generateRock(){
+        rock.position.x = (self.scene?.size.width)! + rock.size.width
+        rock.position.y = (CGFloat(rockYPos))
+    }
+
+//    func didBegin(_ contact: SKPhysicsContact){
+//        let firstBody = contact.bodyA.node as! SKSpriteNode
+//        let secondBody = contact.bodyB.node as! SKSpriteNode
+//        print("Contact1")
+//        if((firstBody.name == "player") && (secondBody.name == "rock1")) {
+//            //collisionBetween(avatar: firstBody, rock: secondBody)
+//            print("CONTACT2")
+//        }else if(firstBody.name == "rock1" && (secondBody.name == "player")){
+//            //collisionBetween(avatar: rock1, rock: player)
+//            print("CONTACT3")
+//        }
+//    }
+
+//    func collisionBetween(avatar: SKNode, rock: SKNode){
+//        player.physicsBody?.isDynamic = true
+//        player.physicsBody?.affectedByGravity = true
+//        player.physicsBody?.mass = 5.0
+//        rock1.physicsBody?.mass = 5.0
+//
+//        player.removeAllActions()
+//        rock1.removeAllActions()
+//    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        //Disables user interaction
         self.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0, delay: 1.0, options: UIViewAnimationOptions.curveEaseIn,
-                       animations: {
-                        let jumpUp = SKAction.moveBy(x: 0, y: 400, duration: 0.8)
-                        let fallBack = SKAction.moveBy(x: 0, y: -400, duration: 0.8)
-                        self.player.run(SKAction.sequence([jumpUp, fallBack]))
-                        self.player.run(SKAction.animate(with: self.playerJumpArray, timePerFrame: 0.9))
-        },completion: nil)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
+    
+        //plays jump animation
+        let jumpUp = SKAction.moveBy(x: 0, y: 300, duration: 0.6)
+        let fallBack = SKAction.moveBy(x: 0, y: -300, duration: 0.6)
+        self.player.run(SKAction.sequence([jumpUp, fallBack]))
+        self.player.run(SKAction.animate(with: self.playerJumpArray, timePerFrame: 0.6))
+
+        //Enables user interaction
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
             self.isUserInteractionEnabled = true
         }
     }
     
     override func update(_ currentTime: TimeInterval) {
-        let initPosGround3 = CGPoint(x: ground2.size.width + ground3.size.width - 10, y: 75)
+        ground.moveGround()
+        moveRock()
+          //rock.moveRock()
+//        if(player.position.x > rock1.position.x){
+//                self.score += 5
+//                self.scoreLabel.text = String(self.score)
+//        }else if(player.position.x > rock2.position.x){
+//            score += 5
+//            scoreLabel.text = String(score)
+//        }else if(player.position.x > rock3.position.x){
+//            score += 5
+//            scoreLabel.text = String(score)
+//        }
         
-        ground.position = CGPoint(x: ground.position.x - 20, y: ground.position.y)
-        ground2.position = CGPoint(x: ground2.position.x - 20, y: ground2.position.y)
-        ground3.position = CGPoint(x: ground3.position.x - 20, y: ground3.position.y)
-        
-        if(ground.position.x < -510){
-            ground.position.x = initPosGround3.x + 510
-        }
-        
-        if(ground2.position.x < -510){
-                ground2.position.x = initPosGround3.x + 510
-        }
-        
-        if(ground3.position.x < -510){
-            ground3.position.x = initPosGround3.x + 510
-        }
     }
-
     
+   
 }
 
