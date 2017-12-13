@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 //Physics categories
-let playerCategory: UInt32 = 0x1 << 0
-let rockCategory: UInt32 = 0x1 << 1
+struct PhysicsCategory{
+    static let none : UInt32 = 0
+    static let all: UInt32 = UInt32(UInt.max)
+    static let playerCategory: UInt32 = 0b1
+    static let rockCategory: UInt32 = 0b10
+}
 
 //Player Start Position Y
 let playerStartY: CGFloat = 275

@@ -10,7 +10,7 @@ import SpriteKit
 import GameplayKit
 import AVFoundation
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate{
     //Score
     var scoreLabel = SKLabelNode()
     var score: Int = 0
@@ -29,13 +29,16 @@ class GameScene: SKScene {
     var playerJumpArray = [SKTexture]()
     var playerJumpArrayEnd = [SKTexture]()
     
+    //Player Hit
+    var playerHit = SKTexture(imageNamed: "dinoJump1")
+    
     //Player Actions
     var playerRun: SKAction!
     var playerJump: SKAction!
-    
+    var Over = false
     var ground = Ground()
     //var rock = Rock()
-    
+    //var menu = startMenu()
     //timers
     var timerFinished = false
     var spawnTimer: TimeInterval = 0
@@ -48,6 +51,8 @@ class GameScene: SKScene {
         Audio()
         loadGame()
         loadPhyisicsBody()
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self    
     }
 
     func loadGame(){
@@ -72,19 +77,21 @@ class GameScene: SKScene {
     }
     
     func loadPhyisicsBody(){
-        physicsBody = SKPhysicsBody(circleOfRadius: 60)
-        physicsBody?.categoryBitMask = playerCategory
-        physicsBody?.contactTestBitMask = rockCategory
-        physicsBody?.affectedByGravity = false
+        player.physicsBody = SKPhysicsBody(circleOfRadius: 80)
+        player.physicsBody?.isDynamic = true
+        player.physicsBody?.categoryBitMask = PhysicsCategory.playerCategory
+        player.physicsBody?.contactTestBitMask = PhysicsCategory.rockCategory
+        player.physicsBody?.collisionBitMask = PhysicsCategory.none
     }
     
     func Audio(){
-        do{
-            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: "gameMusic", ofType: "mp3")!) as URL)
-        } catch{
-            NSLog("Error: Game music is not working correctly.")
-        }
-        gameMusic.play()
+//        do{
+//            try gameMusic = AVAudioPlayer(contentsOf: NSURL(fileURLWithPath: Bundle.main.path(forResource: "gameMusic", ofType: "mp3")!) as URL)
+//        } catch{
+//            NSLog("Error: Game music is not working correctly.")
+//        }
+//        //menu.menuMusic.stop()
+//        gameMusic.play()
     }
     
     func createPlayer(){
@@ -112,7 +119,7 @@ class GameScene: SKScene {
     }
     
     func spawnRock(){
-        let wait = SKAction.wait(forDuration: 1, withRange: 0.5)
+        let wait = SKAction.wait(forDuration: 3, withRange: 0.5)
         let spawn = SKAction.run({
             self.generateRock()
         })
@@ -122,36 +129,67 @@ class GameScene: SKScene {
     
     func moveRock(){
         let moveLeft = SKAction.moveBy(x: -20, y: 0, duration: 10)
-        rock.run(SKAction.repeatForever(moveLeft))
+        //if(gameOver == false){
+            rock.run(SKAction.repeatForever(moveLeft))
+        //} else{
+            //rock.run(SKAction.pause())
+        //}
     }
     func generateRock(){
         rock.position.x = (self.scene?.size.width)! + rock.size.width
         rock.position.y = (CGFloat(rockYPos))
+        
+        //rock physics
+        rock.physicsBody = SKPhysicsBody(circleOfRadius: 60)
+        rock.physicsBody?.isDynamic = true
+        rock.physicsBody?.categoryBitMask = PhysicsCategory.rockCategory
+        rock.physicsBody?.contactTestBitMask = PhysicsCategory.playerCategory
+        rock.physicsBody?.collisionBitMask = PhysicsCategory.none
+        rock.physicsBody?.usesPreciseCollisionDetection = true
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact){
+        let firstBody: SKPhysicsBody
+        let secondBody: SKPhysicsBody
+        
+        //Disables user interaction
+        self.isUserInteractionEnabled = false
+        
+        
+        if(contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask){
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else{
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if((firstBody.categoryBitMask & PhysicsCategory.playerCategory != 0) && (secondBody.categoryBitMask & PhysicsCategory.rockCategory != 0)){
+            if let _ = firstBody.node as? SKSpriteNode, let _ = secondBody.node as? SKSpriteNode{
+                self.player.run(SKAction.animate(with: [self.playerHit], timePerFrame: 1))
+                //gameOver = true
+                print("Hit")
+                
+               
+                //self.navigationController?.pushViewController(vc!, animated: true)
+        
+                
+                //var nextView = performSegue.destination as! GameOver
+                //nextView.performSegue(withIdentifier: "gameOverVC", sender: Any?.self)
+//                let storyBoard : UIViewController = UIViewController(coder: "GameOverVC")
+//                SKScene.performSegueWithIdentifier("GameOverVC", sender: nil)
+//
+                
+                //let nextViewController = self.scene.instantiateViewController(withIdentifier: "gameOverVC") as! GameOver
+            //self.navigationController.pushViewController(nextViewController, animated:true, completion:nil)
+            }
+        }
+        //Enables user interaction
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+            self.isUserInteractionEnabled = true
+        }
     }
 
-//    func didBegin(_ contact: SKPhysicsContact){
-//        let firstBody = contact.bodyA.node as! SKSpriteNode
-//        let secondBody = contact.bodyB.node as! SKSpriteNode
-//        print("Contact1")
-//        if((firstBody.name == "player") && (secondBody.name == "rock1")) {
-//            //collisionBetween(avatar: firstBody, rock: secondBody)
-//            print("CONTACT2")
-//        }else if(firstBody.name == "rock1" && (secondBody.name == "player")){
-//            //collisionBetween(avatar: rock1, rock: player)
-//            print("CONTACT3")
-//        }
-//    }
-
-//    func collisionBetween(avatar: SKNode, rock: SKNode){
-//        player.physicsBody?.isDynamic = true
-//        player.physicsBody?.affectedByGravity = true
-//        player.physicsBody?.mass = 5.0
-//        rock1.physicsBody?.mass = 5.0
-//
-//        player.removeAllActions()
-//        rock1.removeAllActions()
-//    }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         //Disables user interaction
         self.isUserInteractionEnabled = false
