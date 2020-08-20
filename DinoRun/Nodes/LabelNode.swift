@@ -8,20 +8,23 @@
 
 import SpriteKit
 
-class Label: SKLabelNode {
+//
+// MARK: - LabelNode
+//
+class LabelNode: SKLabelNode {
     
     override init() {
         super.init()
         self.horizontalAlignmentMode = .right
-        self.fontSize = 50
         self.fontName = "Arial"
-        self.color = UIColor.black
-        self.zPosition = 7
     }
     
-    func create(position: CGPoint, color: UIColor? = .black, text: String) {
+    func prepareForScene(position: CGPoint, color: UIColor, fontSize: CGFloat, name: String, zPosition: CGFloat, text: String) {
         self.position = position
         self.fontColor = color
+        self.fontSize = fontSize
+        self.zPosition = zPosition
+        self.name = name
         self.text = "\(text)"
     }
     

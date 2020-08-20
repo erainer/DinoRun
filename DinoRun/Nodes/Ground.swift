@@ -8,15 +8,14 @@
 
 import SpriteKit
 
+//
+// MARK: - Ground SpriteNode
+//
 class Ground: SpriteNode {
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        let texture = SKTexture(imageNamed: "ground")
-        let size = CGSize( width: 1024, height: 210)
         super.init(texture: texture, color: color, size: size)
-        self.name = "ground"
         self.size = size
-        self.zPosition = 2
         self.texture = texture
     }
     
@@ -24,8 +23,10 @@ class Ground: SpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func create(position: CGPoint) {
+    override func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
         self.position = position
+        self.name = name
+        self.zPosition = zPosition
     }
     
     override func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {

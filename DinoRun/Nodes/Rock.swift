@@ -7,26 +7,27 @@
 //
 import SpriteKit
 
+//
+// MARK: - Rock SpriteNode
+//
 class Rock: SpriteNode {
-    
+
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        let texture = SKTexture(imageNamed: "rock")
-        let size = CGSize( width: 180, height: 169)
         super.init(texture: texture, color: color, size: size)
-        self.name = "rock"
         self.size = size
-        self.zPosition = 3
         self.texture = texture
+    }
+    
+    override func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
+        self.position = position
+        self.name = name
+        self.zPosition = zPosition
         self.physicsBody = SKPhysicsBody(circleOfRadius: 60)
         self.physicsBody?.isDynamic = true
         self.physicsBody?.categoryBitMask = PhysicsCategory.rockCategory
         self.physicsBody?.contactTestBitMask = PhysicsCategory.playerCategory
         self.physicsBody?.collisionBitMask = PhysicsCategory.none
         self.physicsBody?.usesPreciseCollisionDetection = true
-    }
-    
-    override func create(position: CGPoint) {
-        self.position = position
     }
     
     override func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {

@@ -16,10 +16,11 @@ enum AnimationType {
     case hit
 }
 
+//
+// MARK: - SpriteNode
+//
 class SpriteNode: SKSpriteNode {
-    
-    let jumpUp = SKAction.moveBy(x: 0, y: 300, duration: 0.4)
-    let fallBack = SKAction.moveBy(x: 0, y: -300, duration: 0.4)
+
     var canAnimate: Bool = true
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -28,7 +29,7 @@ class SpriteNode: SKSpriteNode {
         self.texture = texture
     }
     
-    func create(position: CGPoint) {
+    func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
     }
     
     func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {
