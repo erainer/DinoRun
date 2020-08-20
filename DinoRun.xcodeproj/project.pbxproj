@@ -18,7 +18,6 @@
 		0A2C4DB324EDCDC9004325BE /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DB224EDCDC9004325BE /* Box.swift */; };
 		0A2C4DB524EDD0F2004325BE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DB424EDD0F2004325BE /* Button.swift */; };
 		A14066491FAD461E0034D885 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14066481FAD461E0034D885 /* Launch Screen.storyboard */; };
-		A14596EF1FB3687A00F3EAAE /* dinoFont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A14596EE1FB3687A00F3EAAE /* dinoFont.ttf */; };
 		A14596F21FB36B5800F3EAAE /* GameMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14596F11FB36B5800F3EAAE /* GameMenu.swift */; };
 		A163E66A1FCA422200A97B9C /* gameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6691FCA422100A97B9C /* gameMusic.mp3 */; };
 		A163E6721FCC7A7800A97B9C /* menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6711FCC7A7800A97B9C /* menu.mp3 */; };
@@ -64,7 +63,6 @@
 		0A2C4DB224EDCDC9004325BE /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		0A2C4DB424EDD0F2004325BE /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		A14066481FAD461E0034D885 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		A14596EE1FB3687A00F3EAAE /* dinoFont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dinoFont.ttf; sourceTree = "<group>"; };
 		A14596F11FB36B5800F3EAAE /* GameMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMenu.swift; sourceTree = "<group>"; };
 		A163E6691FCA422100A97B9C /* gameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameMusic.mp3; sourceTree = "<group>"; };
 		A163E6711FCC7A7800A97B9C /* menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menu.mp3; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 		A1CB17971FA80B1E0020DF1C = {
 			isa = PBXGroup;
 			children = (
-				A14596EE1FB3687A00F3EAAE /* dinoFont.ttf */,
 				A1CB17A21FA80B1E0020DF1C /* DinoRun */,
 				A1CB17BD1FA80B1E0020DF1C /* DinoRunTests */,
 				A1CB17C81FA80B1E0020DF1C /* DinoRunUITests */,
@@ -324,7 +321,6 @@
 				0A2C4DB124EDC6E1004325BE /* gameOver.mp3 in Resources */,
 				A14066491FAD461E0034D885 /* Launch Screen.storyboard in Resources */,
 				A1CB17A61FA80B1E0020DF1C /* GameScene.sks in Resources */,
-				A14596EF1FB3687A00F3EAAE /* dinoFont.ttf in Resources */,
 				A163E66A1FCA422200A97B9C /* gameMusic.mp3 in Resources */,
 				A1CB17B11FA80B1E0020DF1C /* Assets.xcassets in Resources */,
 				A1FB8D811FE1713900936B44 /* Main.storyboard in Resources */,
