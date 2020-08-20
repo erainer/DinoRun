@@ -9,8 +9,6 @@ import SpriteKit
 
 class Rock: SpriteNode {
     
-    let moveLeft = SKAction.moveBy(x: -30, y: 0, duration: 10)
-    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "rock")
         let size = CGSize( width: 180, height: 169)
@@ -31,26 +29,15 @@ class Rock: SpriteNode {
         self.position = position
     }
     
-    override func animate(with animation: AnimationType? = nil) {
-         self.run(moveLeft)
+    override func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {
+        guard canAnimate,
+            let rockSpeed = speed else {
+            return
+        }
+         self.position = CGPoint(x: self.position.x - rockSpeed, y: self.position.y)
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    var spawnTimer: Timer?
-//    let ground = Ground()
-//    @objc let rock = Rock()
-    
-//    func startGenerating(seconds: TimeInterval){
-//        spawnTimer = Timer.scheduledTimer(timeInterval: seconds, target: self, selector: #selector(getter: RockSpawn.rock), userInfo: nil, repeats: true)
-//    }
-//
-//    func generateRock(){
-//        rock.position.x = 1920 + rock.size.width
-//        rock.position.y = (CGFloat(rockYPos) - 200)
-//        addChild(rock)
-//        rock.moveRock()
-//    }
 }

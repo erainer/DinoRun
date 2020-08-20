@@ -8,24 +8,25 @@
 
 import SpriteKit
 
-class Labels: SKLabelNode {
+class Label: SKLabelNode {
     
     override init() {
         super.init()
         self.horizontalAlignmentMode = .right
         self.fontSize = 50
+        self.fontName = "Arial"
         self.color = UIColor.black
-        self.zPosition = 9
+        self.zPosition = 7
     }
     
     func create(position: CGPoint, color: UIColor? = .black, text: String) {
         self.position = position
         self.fontColor = color
-        self.text = "Score: \(text)"
+        self.text = "\(text)"
     }
     
     func updateText(text: String) {
-        self.text = "Score: \(text)"
+        self.text = "\(text)"
     }
     
     required init?(coder aDecoder: NSCoder) {

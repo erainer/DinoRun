@@ -12,8 +12,6 @@ class Player: SpriteNode {
     var playerRunArray = [SKTexture]()
     var playerJumpArray = [SKTexture]()
     var playerJumpArrayEnd = [SKTexture]()
-    let jumpUp = SKAction.moveBy(x: 0, y: 300, duration: 0.6)
-    let fallBack = SKAction.moveBy(x: 0, y: -300, duration: 0.6)
     var playerHit = SKTexture(imageNamed: "dinoJump1")
     
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
@@ -41,18 +39,21 @@ class Player: SpriteNode {
         playerRunArray.append(SKTexture(imageNamed: "dino3"))
         playerRunArray.append(SKTexture(imageNamed: "dino4"))
         playerJumpArray.append(SKTexture(imageNamed: "dinoJump2"))
-        playerJumpArray.append(SKTexture(imageNamed: "dinoJump1"))
         self.position = position
         self.run(SKAction.repeatForever(SKAction.animate(with: playerRunArray, timePerFrame: 0.2)))
     }
     
-    override func animate(with animation: AnimationType? = nil) {
+    override func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {
+        guard canAnimate else {
+            return
+        }
+        
         switch animation {
         case .run:
             self.run(SKAction.repeatForever(SKAction.animate(with: playerRunArray, timePerFrame: 0.2)))
         case .jump:
             self.run(SKAction.sequence([jumpUp, fallBack]))
-            self.run(SKAction.animate(with: self.playerJumpArray, timePerFrame: 0.6))
+            self.run(SKAction.animate(with: self.playerJumpArray, timePerFrame: 0.4))
         case .hit:
             self.run(SKAction.animate(with: [self.playerHit], timePerFrame: 1))
         case .none:

@@ -15,12 +15,33 @@ class SettingsMenu: UIViewController {
     //
     // MARK: - IBOutlets
     //
-    
+    @IBOutlet weak var volumeLabel: UILabel!
+
     //
-    // MARK: - Varibles
+    // MARK: - Properties
     //
+    var volume: Float = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        volumeLabel.text = String(Int(volume))
+    }
+    
+    @IBAction func volumeUpButton(_ sender: Any) {
+        if volume != 5 {
+            volume += 1
+            AudioController.shared.updateVolume(volume: volume)
+        }
+        
+        volumeLabel.text = String(Int(volume))
+    }
+    
+    @IBAction func volumeDownButton(_ sender: UIButton) {
+        if volume != 0 {
+            volume -= 1
+            AudioController.shared.updateVolume(volume: volume)
+        }
+        
+        volumeLabel.text = String(Int(volume))
     }
 }
