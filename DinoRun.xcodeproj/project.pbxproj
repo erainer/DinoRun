@@ -11,7 +11,7 @@
 		0A2C4D9B24ECA05C004325BE /* SettingsMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4D9A24ECA05C004325BE /* SettingsMenu.swift */; };
 		0A2C4DA324ECB4E6004325BE /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DA224ECB4E6004325BE /* Player.swift */; };
 		0A2C4DA524ECB8C0004325BE /* Ground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DA424ECB8C0004325BE /* Ground.swift */; };
-		0A2C4DA924ECEABF004325BE /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DA824ECEABF004325BE /* Label.swift */; };
+		0A2C4DA924ECEABF004325BE /* LabelNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DA824ECEABF004325BE /* LabelNode.swift */; };
 		0A2C4DAB24ECF2E4004325BE /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DAA24ECF2E4004325BE /* Background.swift */; };
 		0A2C4DAD24EDBD4B004325BE /* Life.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A2C4DAC24EDBD4B004325BE /* Life.swift */; };
 		0A2C4DB124EDC6E1004325BE /* gameOver.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 0A2C4DB024EDC6E1004325BE /* gameOver.mp3 */; };
@@ -23,7 +23,6 @@
 		A163E66A1FCA422200A97B9C /* gameMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6691FCA422100A97B9C /* gameMusic.mp3 */; };
 		A163E6721FCC7A7800A97B9C /* menu.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = A163E6711FCC7A7800A97B9C /* menu.mp3 */; };
 		A163E67B1FCCC5E000A97B9C /* SpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E67A1FCCC5E000A97B9C /* SpriteNode.swift */; };
-		A163E6811FCCE43400A97B9C /* GameOver.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E6801FCCE43400A97B9C /* GameOver.swift */; };
 		A163E6831FCCEC8F00A97B9C /* Rock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A163E6821FCCEC8F00A97B9C /* Rock.swift */; };
 		A1CB17A41FA80B1E0020DF1C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB17A31FA80B1E0020DF1C /* AppDelegate.swift */; };
 		A1CB17A61FA80B1E0020DF1C /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A1CB17A51FA80B1E0020DF1C /* GameScene.sks */; };
@@ -58,7 +57,7 @@
 		0A2C4D9A24ECA05C004325BE /* SettingsMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenu.swift; sourceTree = "<group>"; };
 		0A2C4DA224ECB4E6004325BE /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		0A2C4DA424ECB8C0004325BE /* Ground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ground.swift; sourceTree = "<group>"; };
-		0A2C4DA824ECEABF004325BE /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		0A2C4DA824ECEABF004325BE /* LabelNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNode.swift; sourceTree = "<group>"; };
 		0A2C4DAA24ECF2E4004325BE /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		0A2C4DAC24EDBD4B004325BE /* Life.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Life.swift; sourceTree = "<group>"; };
 		0A2C4DB024EDC6E1004325BE /* gameOver.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameOver.mp3; sourceTree = "<group>"; };
@@ -70,7 +69,6 @@
 		A163E6691FCA422100A97B9C /* gameMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gameMusic.mp3; sourceTree = "<group>"; };
 		A163E6711FCC7A7800A97B9C /* menu.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = menu.mp3; sourceTree = "<group>"; };
 		A163E67A1FCCC5E000A97B9C /* SpriteNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpriteNode.swift; sourceTree = "<group>"; };
-		A163E6801FCCE43400A97B9C /* GameOver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOver.swift; sourceTree = "<group>"; };
 		A163E6821FCCEC8F00A97B9C /* Rock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rock.swift; sourceTree = "<group>"; };
 		A1CB17A01FA80B1E0020DF1C /* DinoRun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DinoRun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1CB17A31FA80B1E0020DF1C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +112,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A14B41424EE8D64003266B8 /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				A14596F11FB36B5800F3EAAE /* GameMenu.swift */,
+				0A2C4D9A24ECA05C004325BE /* SettingsMenu.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		0A14B41524EE8D9B003266B8 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				A1CB17A71FA80B1E0020DF1C /* Actions.sks */,
+				0A2C4D9824EC9C56004325BE /* AudioController.swift */,
+				A1CB17A51FA80B1E0020DF1C /* GameScene.sks */,
+				A1CB17A91FA80B1E0020DF1C /* GameScene.swift */,
+				A1CB17AB1FA80B1E0020DF1C /* GameViewController.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		A163E6751FCC7F6F00A97B9C /* Audio */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,7 +150,7 @@
 				A163E67A1FCCC5E000A97B9C /* SpriteNode.swift */,
 				0A2C4DA224ECB4E6004325BE /* Player.swift */,
 				0A2C4DA424ECB8C0004325BE /* Ground.swift */,
-				0A2C4DA824ECEABF004325BE /* Label.swift */,
+				0A2C4DA824ECEABF004325BE /* LabelNode.swift */,
 				0A2C4DAA24ECF2E4004325BE /* Background.swift */,
 				0A2C4DAC24EDBD4B004325BE /* Life.swift */,
 				0A2C4DB224EDCDC9004325BE /* Box.swift */,
@@ -165,20 +184,14 @@
 			isa = PBXGroup;
 			children = (
 				A1CB17A31FA80B1E0020DF1C /* AppDelegate.swift */,
-				A1CB17A51FA80B1E0020DF1C /* GameScene.sks */,
-				A1CB17A71FA80B1E0020DF1C /* Actions.sks */,
-				A163E6841FCCEC9900A97B9C /* Nodes */,
-				A1CB17A91FA80B1E0020DF1C /* GameScene.swift */,
-				A1CB17AB1FA80B1E0020DF1C /* GameViewController.swift */,
-				A14596F11FB36B5800F3EAAE /* GameMenu.swift */,
-				0A2C4D9A24ECA05C004325BE /* SettingsMenu.swift */,
-				A163E6801FCCE43400A97B9C /* GameOver.swift */,
-				0A2C4D9824EC9C56004325BE /* AudioController.swift */,
-				A1FB8D801FE1713800936B44 /* Main.storyboard */,
-				A163E6751FCC7F6F00A97B9C /* Audio */,
 				A1CB17B01FA80B1E0020DF1C /* Assets.xcassets */,
+				A163E6751FCC7F6F00A97B9C /* Audio */,
+				0A14B41524EE8D9B003266B8 /* Game */,
 				A1CB17B51FA80B1E0020DF1C /* Info.plist */,
 				A14066481FAD461E0034D885 /* Launch Screen.storyboard */,
+				A1FB8D801FE1713800936B44 /* Main.storyboard */,
+				0A14B41424EE8D64003266B8 /* Menu */,
+				A163E6841FCCEC9900A97B9C /* Nodes */,
 			);
 			path = DinoRun;
 			sourceTree = "<group>";
@@ -343,12 +356,11 @@
 			files = (
 				0A2C4D9924EC9C56004325BE /* AudioController.swift in Sources */,
 				A163E67B1FCCC5E000A97B9C /* SpriteNode.swift in Sources */,
-				0A2C4DA924ECEABF004325BE /* Label.swift in Sources */,
+				0A2C4DA924ECEABF004325BE /* LabelNode.swift in Sources */,
 				0A2C4DB524EDD0F2004325BE /* Button.swift in Sources */,
 				A163E6831FCCEC8F00A97B9C /* Rock.swift in Sources */,
 				0A2C4DA524ECB8C0004325BE /* Ground.swift in Sources */,
 				0A2C4DA324ECB4E6004325BE /* Player.swift in Sources */,
-				A163E6811FCCE43400A97B9C /* GameOver.swift in Sources */,
 				A14596F21FB36B5800F3EAAE /* GameMenu.swift in Sources */,
 				A1CB17AA1FA80B1E0020DF1C /* GameScene.swift in Sources */,
 				0A2C4DB324EDCDC9004325BE /* Box.swift in Sources */,

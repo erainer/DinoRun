@@ -7,6 +7,9 @@
 //
 import SpriteKit
 
+//
+// MARK: - GameMenu
+//
 class GameMenu: UIViewController {
     
     //

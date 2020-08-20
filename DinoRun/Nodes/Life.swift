@@ -7,24 +7,21 @@
 //
 import SpriteKit
 
+//
+// MARK: - Life SpriteNode
+//
 class Life: SpriteNode {
     
-    //
-    // MARK: - Life Lifecycle
-    //
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        let texture = SKTexture(imageNamed: "life-icon")
-        let color = UIColor.clear
-        let size = CGSize(width: 106, height: 96)
         super.init(texture: texture, color: color, size: size)
-        self.name = "life"
         self.size = size
-        self.zPosition = 2
         self.texture = texture
     }
     
-    override func create(position: CGPoint) {
+    override func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
         self.position = position
+        self.name = name
+        self.zPosition = zPosition
     }
     
     required init?(coder aDecoder: NSCoder) {

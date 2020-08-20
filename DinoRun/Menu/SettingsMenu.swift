@@ -10,6 +10,9 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+//
+// MARK: - SettingsMenu
+//
 class SettingsMenu: UIViewController {
     
     //

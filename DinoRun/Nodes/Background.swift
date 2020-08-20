@@ -7,15 +7,14 @@
 //
 import SpriteKit
 
+//
+// MARK: - Background SpriteNode
+//
 class Background: SpriteNode {
 
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        let texture = SKTexture(imageNamed: "sky")
-        let size = CGSize( width: 1920, height: 1282)
         super.init(texture: texture, color: color, size: size)
-        self.name = "background"
         self.size = size
-        self.zPosition = 1
         self.texture = texture
     }
     
@@ -23,7 +22,9 @@ class Background: SpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func create(position: CGPoint) {
+    override func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
         self.position = position
+        self.zPosition = zPosition
+        self.name = name
     }
 }

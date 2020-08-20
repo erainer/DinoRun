@@ -7,15 +7,14 @@
 //
 import SpriteKit
 
+//
+// MARK: - Box SpriteNode
+//
 class Box: SpriteNode {
 
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
-        let texture = SKTexture(imageNamed: "box")
-        let size = CGSize( width: 1105, height: 667)
         super.init(texture: texture, color: color, size: size)
-        self.name = "box"
         self.size = size
-        self.zPosition = 5
         self.texture = texture
         self.alpha = 0.8
     }
@@ -24,7 +23,9 @@ class Box: SpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func create(position: CGPoint) {
+    override func prepareForScene(position: CGPoint, name: String, zPosition: CGFloat) {
         self.position = position
+        self.name = name
+        self.zPosition = zPosition
     }
 }

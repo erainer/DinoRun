@@ -10,17 +10,21 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
+//
+// MARK: - GameViewController
+//
 class GameViewController: UIViewController {
     
-        let scene = GameScene()
+    //
+    // MARK: - Properties
+    //
+    let scene = GameScene()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let scene = GameScene(size:CGSize(width: 1920, height: 900))
         let SKView = self.view as! SKView
-        SKView.showsFPS = true
         SKView.showsPhysics = false
-        SKView.showsNodeCount = true
         SKView.ignoresSiblingOrder = true
         scene.scaleMode = .aspectFill
         SKView.presentScene(scene)
