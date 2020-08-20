@@ -9,7 +9,7 @@
 import SpriteKit
 
 class Ground: SpriteNode {
-
+    
     override init(texture: SKTexture?, color: UIColor, size: CGSize) {
         let texture = SKTexture(imageNamed: "ground")
         let size = CGSize( width: 1024, height: 210)
@@ -28,29 +28,11 @@ class Ground: SpriteNode {
         self.position = position
     }
     
-    override func animate(with animation: AnimationType? = nil) {
-        self.position = CGPoint(x: self.position.x - 5, y: self.position.y)
+    override func animate(with animation: AnimationType? = nil, speed: CGFloat? = nil) {
+        guard canAnimate,
+            let groundSpeed = speed else {
+            return
+        }
+        self.position = CGPoint(x: self.position.x - groundSpeed, y: self.position.y)
     }
-    
-//    
-//    func moveGround() {
-//        let initPosGround3 = CGPoint(x: ground2.size.width + ground3.size.width - 10, y: 75)
-//        // Moves the grounds to the left.
-//        ground.position = CGPoint(x: ground.position.x - 5, y: ground.position.y)
-//        ground2.position = CGPoint(x: ground2.position.x - 5, y: ground2.position.y)
-//        ground3.position = CGPoint(x: ground3.position.x - 5, y: ground3.position.y)
-//        
-//        // Resets the position of the ground once it is off the screen.
-//        if ground.position.x < -510 {
-//            ground.position.x = initPosGround3.x + 510
-//        }
-//        
-//        if ground2.position.x < -510 {
-//            ground2.position.x = initPosGround3.x + 510
-//        }
-//        
-//        if ground3.position.x < -510 {
-//            ground3.position.x = initPosGround3.x + 510
-//        }
-//    }
 }
