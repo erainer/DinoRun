@@ -246,6 +246,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Set physics of game scene.
         physicsWorld.gravity = CGVector.zero
         physicsWorld.contactDelegate = self
+        AudioController.shared.setupGameAudio()
+        AudioController.shared.setupGameOverAudio()
         
         loadGame()
         
@@ -391,6 +393,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         gameTimer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(speedUpGame), userInfo: nil, repeats: true)
+        AudioController.shared.playAudio(sound: AudioController.shared.gameMusic)
     }
     
     private func removeLife() {
@@ -501,9 +504,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             node.removeAllActions()
         }
         
-        // Stop playing game audio and play game over audio.
+        // Stop playing game music.
         AudioController.shared.stopAudio(sound: AudioController.shared.gameMusic)
-        AudioController.shared.setupGameOverAudio()
+        AudioController.shared.playAudio(sound: AudioController.shared.gameOverSound)
         
         // Create game over nodes.
         box.prepareForScene(position: NodeIdentifiers.box.getPosition(), name: NodeIdentifiers.box.rawValue, zPosition: NodeIdentifiers.box.getZPosition())

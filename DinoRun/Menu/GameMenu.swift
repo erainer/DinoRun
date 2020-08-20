@@ -32,7 +32,6 @@ class GameMenu: UIViewController {
     
     @IBAction func playButton(_ sender: Any) {
         AudioController.shared.stopAudio(sound: AudioController.shared.menuMusic)
-        AudioController.shared.setupGameAudio()
         AudioController.shared.firstRun = true
     }
     

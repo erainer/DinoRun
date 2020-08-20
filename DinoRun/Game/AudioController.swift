@@ -46,8 +46,6 @@ class AudioController {
         } catch {
             NSLog("Error: Menu Audio is not working correctly.")
         }
-        
-        playAudio(sound: gameMusic)
     }
     
     func setupGameOverAudio() {
@@ -61,11 +59,10 @@ class AudioController {
         } catch {
             NSLog("Error: Menu Audio is not working correctly.")
         }
-        
-        playAudio(sound: gameOverSound)
     }
     
     func playAudio(sound: AVAudioPlayer) {
+        sound.currentTime = 0
         sound.play()
     }
     
